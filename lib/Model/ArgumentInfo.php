@@ -21,7 +21,6 @@ final class ArgumentInfo implements \JsonSerializable {
 
 	public static function fromInputArgument(InputArgument $argument): self {
 		return new self(
-
 			$argument->getName(),
 			$argument->getDescription(),
 			!$argument->isRequired(),

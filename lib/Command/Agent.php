@@ -65,15 +65,18 @@ final class Agent extends Command {
 			Your job is to find the right command or sequence of commands and run them.
 			A list of available commands is provided below.
 			Please do not use or attempt to invoke any other command than the provided ones.
-			Please inquire the get_command_info tool for more information about a specific command
-			instead of relying on previous knowledge about it.
+			Please use the get_command_info tool to retrieve more information about a specific
+			command instead of relying on previous knowledge about it.
 
 			Each command has arguments and options.
 			Arguments are passed are passed as positional arguments.
 			Some arguments are required and some are optional.
 			Options are passed using a -- prefix like in unix programs.
 		    Some options accept an optional value and some even require one
+		    Please merge an option and its value into a single argument using an equal sign,
+		    for example, --option=value.
 
+			List of available commands and their descriptions:
 			$commandList
 		PROMPT));
 

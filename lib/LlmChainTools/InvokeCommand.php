@@ -32,7 +32,17 @@ final class InvokeCommand {
 			return "There is no command with name $name!";
 		}
 
-		$argv = ['occ', $name, ...$options, ...$arguments];
+		$argv = ['occ', $name];
+		foreach ($options as $option) {
+			if (!str_starts_with($option, '--')) {
+				$option = "--$option";
+			}
+
+			$argv[] = $option;
+		}
+		foreach ($arguments as $argument) {
+			$argv[] = $argument;
+		}
 
 		if ($this->audit) {
 			$this->output->writeln(sprintf(
@@ -42,7 +52,6 @@ final class InvokeCommand {
 			));
 		}
 
-		//$input = new ArgvInput(['occ', $name, ...$argv]);
 		$input = new ArgvInput($argv);
 		$output = new BufferedOutput();
 
