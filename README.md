@@ -4,6 +4,8 @@
 -->
 # Occ Agent
 
+## Disclaimer: This is a fun project! Pleas keep in mind that all output of occ commands is sent to OpenAI! Do not use in production!
+
 This agent assists you in managing your Nextcloud instance without you having to know about each occ command.
 It works by using a LLM to convert your text prompts to occ commands which will then b executed locally.
 
