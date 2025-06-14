@@ -5,13 +5,15 @@
 -->
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
-	<id>mail</id>
-	<name>Mail</name>
-	<summary>💌 A mail app for Nextcloud</summary>
+	<id>occ_agent</id>
+	<name>Occ Agent</name>
+	<summary>An agent to help you manage your Nextcloud server</summary>
 	<description><![CDATA[This agent assists you in managing your Nextcloud instance without you having to know about each occ command. It works by using a LLM to convert your text prompts to occ commands which will then b executed locally.]]></description>
 	<version>0.1.0-alpha.1</version>
 	<licence>agpl</licence>
 	<author homepage="https://github.com/st3iny">Richard Steinmetz</author>
+	<website>https://github.com/st3iny/occ_agent</website>
+	<repository type="git">https://github.com/st3iny/occ_agent.git</repository>
 	<namespace>OccAgent</namespace>
 	<dependencies>
 		<php min-version="8.2" max-version="8.4" />
