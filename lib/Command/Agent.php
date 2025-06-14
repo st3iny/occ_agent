@@ -32,7 +32,7 @@ final class Agent extends Command {
 	protected function configure(): void {
 		$this->setName('agent');
 		$this->setDescription('Run the occ agent with an interactive prompt');
-		$this->addOption('audit', null, null, 'Log all occ commands and their arguments');
+		$this->addOption('audit', null, null, 'Log all invoked occ commands and their arguments');
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output): int {
