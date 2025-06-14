@@ -15,7 +15,7 @@ It works by using a LLM to convert your text prompts to occ commands which will 
 
 ## Usage
 
-1. Export an OpenAI api key: `export OPEN_AI_KEY=sk-proj-yourkeyhere'
+1. Export an OpenAI api key: `export OPEN_AI_KEY=sk-proj-yourkeyhere`
 2. Run `php occ agent` to get started with an interactive prompt.
 
 **Optional:** Print an audit log with all executed occ commans: `php occ agent --audit`
