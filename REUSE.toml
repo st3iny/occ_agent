@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2025 Richard Steinmetz
+# SPDX-License-Identifier: AGPL-3.0-or-later
+version = 1
+SPDX-PackageName = "occ_agent"
+SPDX-PackageSupplier = "Richard Steinmetz <richard@steinmetz.cloud>"
+SPDX-PackageDownloadLocation = "https://github.com/st3iny/occ_agent"
+
+[[annotations]]
+path = ["composer.json", "composer.lock"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 Richard Steinmetz"
+SPDX-License-Identifier = "AGPL-3.0-or-later"

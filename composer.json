@@ -1,0 +1,22 @@
+{
+	"config": {
+		"platform": {
+			"php": "8.2"
+		},
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"autoloader-suffix": "OccAgent"
+	},
+	"require": {
+		"php": ">=8.2 <=8.4",
+		"php-llm/llm-chain": "^0.22.0"
+	},
+	"provide": {
+		"psr/log": "^1.0.4|^2|^3"
+	},
+	"autoload": {
+		"psr-4": {
+			"OCA\\OccAgent\\": "lib/"
+		}
+	}
+}

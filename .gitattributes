@@ -1,0 +1,4 @@
+# SPDX-FileCopyrightText: 2025 Richard Steinmetz
+# SPDX-License-Identifier: AGPL-3.0-or-later
+/CHANGELOG.md merge=union
+/vendor-bin/**/composer.lock binary

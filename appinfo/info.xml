@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+  - SPDX-FileCopyrightText: 2025 Richard Steinmetz
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>mail</id>
+	<name>Mail</name>
+	<summary>💌 A mail app for Nextcloud</summary>
+	<description><![CDATA[This agent assists you in managing your Nextcloud instance without you having to know about each occ command. It works by using a LLM to convert your text prompts to occ commands which will then b executed locally.]]></description>
+	<version>0.1.0-alpha.1</version>
+	<licence>agpl</licence>
+	<author homepage="https://github.com/st3iny">Richard Steinmetz</author>
+	<namespace>OccAgent</namespace>
+	<dependencies>
+		<php min-version="8.2" max-version="8.4" />
+		<nextcloud min-version="31" max-version="32" />
+	</dependencies>
+	<commands>
+		<command>OCA\OccAgent\Command\Agent</command>
+	</commands>
+</info>

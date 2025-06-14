@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: 2025 Richard Steinmetz
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Composer
+composer.phar
+/lib/Vendor
+/vendor/
+/vendor-bin/*/vendor
+
+# Mac OS
+.DS_Store
+
+# test coverage
+tests/clover*.xml
+
+# Node.js modules
+node_modules/
+
+/js
+
+# packaged app
+build/artifacts
+
+# NetBeans project
+nbproject/
+
+translations.js
+
+# JS coverage
+coverage/
+
+# vim
+.*.sw?
+
+
+# PHPunit temp file
+tests/.phpunit.result.cache
+
+/.php_cs.cache
+/.php-cs-fixer.cache
+
+# VSCode / VSCodium
+.vscode/
+*.code-workspace
+
+# PhpStorm
+.idea
+
+# Playwright
+/playwright
+/playwright-report
+/test-results
