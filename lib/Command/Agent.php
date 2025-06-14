@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace OCA\OccAgent\Command;
 
+use OCA\OccAgent\Model\CommandInfo;
 use OCA\OccAgent\Service\CommandExtractionService;
 use OCA\OccAgent\Service\LlmChainService;
 use PhpLlm\LlmChain\Platform\Message\Message;
@@ -31,7 +32,6 @@ final class Agent extends Command {
 	protected function configure(): void {
 		$this->setName('agent');
 		$this->setDescription('Run the occ agent with an interactive prompt');
-		$this->addOption('dump', null, null, 'Dump all available commands and exit');
 		$this->addOption('audit', null, null, 'Log all occ commands and their arguments');
 	}
 
@@ -47,19 +47,26 @@ final class Agent extends Command {
 		$audit = (bool)$input->getOption('audit');
 		$chain = $this->chainService->createChain($apiKey, $output, $audit);
 
+
+		// Generate simple command list for the LLM. Sending the full JSON of all commands would
+		// cause excessive token usage.
 		$commands = $this->commandExtractionService->extractCommands();
-		$tools = json_encode($commands, JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
+		$commandList = implode('\n', array_map(
+			static fn (CommandInfo $command) => sprintf(
+				'%s %s',
+				$command->getName(),
+				$command->getDescription(),
+			),
+			$commands,
+		));
 
-		if ($input->getOption('dump')) {
-			$output->write($tools);
-			return 0;
-		}
-
-		$initialMessageBag = new MessageBag(Message::forSystem(<<<PROMPT
+		$messages = new MessageBag(Message::forSystem(<<<PROMPT
 			The user will prompt commands to interact with a Nextcloud server.
 			Your job is to find the right command or sequence of commands and run them.
-			All available commands and their arguments are provided below in JSON format.
+			A list of available commands is provided below.
 			Please do not use or attempt to invoke any other command than the provided ones.
+			Please inquire the get_command_info tool for more information about a specific command
+			instead of relying on previous knowledge about it.
 
 			Each command has arguments and options.
 			Arguments are passed are passed as positional arguments.
@@ -67,7 +74,7 @@ final class Agent extends Command {
 			Options are passed using a -- prefix like in unix programs.
 		    Some options accept an optional value and some even require one
 
-			$tools
+			$commandList
 		PROMPT));
 
 		/** @var QuestionHelper $helper */
@@ -88,9 +95,7 @@ final class Agent extends Command {
 			// Usually, it is smart to keep the all messages in the context because LLMs are
 			// stateless. However, this makes no sense for the agent as this would result in
 			// commands being executed multiple times.
-			$messages = clone $initialMessageBag;
-			$messages->add(Message::ofUser($msg));
-			$response = $chain->call($messages);
+			$response = $chain->call($messages->with(Message::ofUser($msg)));
 			$responseContent = (string)$response->getContent();
 
 			$output->writeln("Agent > $responseContent");
